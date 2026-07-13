@@ -1,11 +1,13 @@
-function Home() {
+import Hero from "../../components/home/Hero";
+import Categories from "../../components/home/Categories";
+
+const Home = () => {
   return (
-    <div className="flex justify-center items-center h-[70vh]">
-      <h1 className="text-5xl font-bold text-blue-600">
-        Welcome to ShopEase 🚀
-      </h1>
-    </div>
+    <>
+      <Hero />
+      <Categories />
+    </>
   );
-}
+};
 
 export default Home;
