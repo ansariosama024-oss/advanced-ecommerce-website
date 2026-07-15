@@ -1,0 +1,15 @@
+import axios from "axios";
+
+const API = "http://localhost:5000/api/products";
+
+export const getProducts = async () => {
+  const { data } = await axios.get(API);
+  return data;
+};
+export const getProductById = async (id) => {
+  const { data } = await axios.get(
+    `http://localhost:5000/api/products/${id}`
+  );
+
+  return data;
+};
