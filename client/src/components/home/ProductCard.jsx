@@ -1,5 +1,25 @@
+import { addToCart } from "../../services/cartService";
+import { addToWishlist } from "../../services/wishlistService";
 import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
+  const handleAddToCart = async () => {
+  try {
+    await addToCart(product._id);
+
+    alert("Product added to cart ✅");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to add product");
+  }
+};
+const handleWishlist = async () => {
+  try {
+    await addToWishlist(product._id);
+    alert("Added to Wishlist ❤️");
+  } catch (error) {
+    alert("Failed to add wishlist");
+  }
+};
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
       <Link to={`/product/${product._id}`}>
@@ -44,7 +64,16 @@ const ProductCard = ({ product }) => {
     View Details
   </button>
 </Link>
-        <button className="mt-5 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+<button
+  onClick={handleWishlist}
+  className="mt-5 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+>
+  ❤️ Add to Wishlist
+</button>
+        <button
+        onClick={handleAddToCart}
+         className="mt-5 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+     
           Add to Cart
         </button>
       </div>

@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+const token = localStorage.getItem("token");
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  alert("Logged out successfully");
+  navigate("/login");
+};
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -35,12 +44,21 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <Link
-            to="/login"
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Login
-          </Link>
+          {token ? (
+  <button
+    onClick={handleLogout}
+    className="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700"
+  >
+    Logout
+  </button>
+) : (
+  <Link
+    to="/login"
+    className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
+  >
+    Login
+  </Link>
+)}
 
         </div>
 
